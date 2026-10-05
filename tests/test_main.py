@@ -1328,6 +1328,13 @@ def test_pyproject_toml_black_force_exclude(runner):
     assert result.output == "1 file was checked.\nDone! 🎉\n"
 
 
+def test_pyproject_toml_black_discovery_keys(runner):
+    args = ["-p", "tests/test_files/pyproject-black-discovery.toml"]
+    result = runner.invoke(main, args=args)
+    assert result.exit_code == 0
+    assert "Done! 🎉" in result.output
+
+
 def test_python_attribute_docstring_after_enum_member(runner):
     file = '''
               import enum
